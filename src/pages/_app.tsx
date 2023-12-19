@@ -1,39 +1,48 @@
-// app.tsx
-import '../styles/globals.css';
-// App.tsx
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import Intro from './intro';
-import LoadingPage from './loading';
-import Login from './login';
+import "@/styles/globals.css";
+import type { AppProps } from "next/app";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import LoadingPage from "./loading";
 
-function App() {
+const Loading = (): JSX.Element | null => {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Logic to determine whether to show the loading page
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    if (router.pathname === '/loading') {
-      setIsLoading(true);
-    } else {
-      setIsLoading(false);
-    }
-  }, [router.pathname]);
+    const handleStart = (url: string): void => {
+      if (url !== router.asPath) {
+        setLoading(true);
+      }
+    };
 
-  // Render components based on the current route
-  if (router.pathname === '/intro') {
-    return <Intro />;
-  }
+    const handleComplete = (url: string): void => {
+      if (url === router.asPath) {
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+      }
+    };
 
-  if (isLoading) {
-    return <LoadingPage />;
-  }
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
 
-  if (router.pathname === '/login') {
-    return <Login />;
-  }
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, [router]);
 
-  return null;
-}
+  return loading ? <LoadingPage /> : null;
+};
+
+const App = ({ Component, pageProps }: AppProps) => {
+  return (
+    <>
+      <Loading />
+      <Component {...pageProps} />
+    </>
+  );
+};
 
 export default App;

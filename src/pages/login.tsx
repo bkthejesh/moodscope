@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-
 const Login = () => {
   return (
     <div className="flex items-end justify-start h-screen">
@@ -21,39 +20,9 @@ const Login = () => {
               MoodScope
             </h1>
             <form>
-              <div className="mb-4">
-                <label className="block text-lg mb-1 font-calibri text-black">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  className="border bg-gray-200 p-2 rounded-full w-full"
-                  placeholder="Enter name"
-                />    
-              </div>
-              <div className="mb-4">
-              <label className="block text-lg mb-1 font-calibri text-black">
-                  Date of birth
-                </label>
-                <input
-                  type="text"
-                  className="border bg-gray-200 p-2 rounded-full w-full"
-                  placeholder="Enter date of birth"
-                />    
-              </div>
-              <div className="mb-4">
-              <label className="block text-lg mb-1 font-calibri text-black">
-                  Gender
-                </label>
-                <input
-                  type="text"
-                  className="border bg-gray-200 p-2 rounded-full w-full"
-                  placeholder="Enter gender"
-                />    
-              </div>
-
-              <button type="submit" className="bg-[#608DFF] text-white py-2 px-4 rounded-full hover:bg-blue-600">
-                Login
+              <button type="submit" className="bg-[#608DFF] text-white py-2 px-10 rounded-full hover:bg-blue-600 flex items-center">
+                Login with 
+                <Image src="/icon _google_.svg" alt="Google icon" width={25} height={25} className="ml-2"/>
               </button>
             </form>
           </div>

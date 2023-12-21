@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "emoji-dictionary": "^1.0.11",
+    "emoji-mart": "^5.5.2",
+    "emoji-random": "^0.1.2",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",

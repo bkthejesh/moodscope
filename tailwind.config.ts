@@ -15,6 +15,7 @@ const config: Config = {
       },
       fontFamily: {
         'lucida-calligraphy': ['Lucida Calligraphy' , 'cursive'],
+        'carattere': ['Carattere', 'sans-serif'],
       },
     },
   },

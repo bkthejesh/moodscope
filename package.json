@@ -9,15 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "emoji-mart": "^5.5.2",
+=======
     "emoji-dictionary": "^1.0.11",
     "emoji-mart": "^5.5.2",
     "emoji-random": "^0.1.2",
+>>>>>>> a0a1c0fcf8b24af3238f658fa27d474be5ab5035
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.12.0"
   },
   "devDependencies": {
+    "@types/emoji-mart": "^3.0.14",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

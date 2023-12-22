@@ -33,10 +33,17 @@ const Mainpage = () => {
         gridTemplateColumns: 'repeat(5, 1fr)',
         gap: '10px', 
       }}>
+<<<<<<< HEAD
         <button style={buttonStyle}> 😄 Happy </button>
         <button style={buttonStyle}> 😞 Sad</button>
         <button style={buttonStyle}> 😁 Excited</button>
         <button style={buttonStyle}> ☹️ Worried</button>
+=======
+        <button style={buttonStyle}>Happy</button>
+        <button style={buttonStyle}>Sad</button>
+        <button style={buttonStyle}>Excited</button>
+        <button style={buttonStyle}>Worried</button>
+>>>>>>> a0a1c0fcf8b24af3238f658fa27d474be5ab5035
         <button style={buttonStyle}>Surprised</button>
         <button style={buttonStyle}>Scared</button>
         <button style={buttonStyle}>Crazy </button>
@@ -67,4 +74,8 @@ const buttonStyle = {
   cursor: 'pointer',
 };
 
+<<<<<<< HEAD
 export default Mainpage;
+=======
+export default Mainpage;
+>>>>>>> a0a1c0fcf8b24af3238f658fa27d474be5ab5035

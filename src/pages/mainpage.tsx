@@ -10,6 +10,7 @@ const Mainpage = () => {
     marginBottom: '20px',
     fontSize: '24px',
     fontWeight: 'bold',
+    fontFamily: 'Lucida Calligraphy,cursive'
   };
 
   const emotionsWithEmojis = [
@@ -40,8 +41,8 @@ const Mainpage = () => {
     display: 'grid',
     gridTemplateRows: 'repeat(4, 1fr)',
     gridTemplateColumns: 'repeat(5, 1fr)',
-    gap: '10px',
-    width: '100%', // Fill the width
+    gap: '30px',
+    width: '75%', // Fill the width
     height: 'auto', // Adjust height as needed
     padding: '10px', // Optional padding
   };
@@ -55,14 +56,18 @@ const Mainpage = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         border: '1px solid #1E1E1E',
         boxSizing: 'border-box',
         position: 'relative',
       }}
     >
-      <div style={{ marginBottom: '20px' }}>
-        <p style={gradientText}>Emotion for the day??</p>
+      <div style={{ position: 'absolute', top: '10px', right: '10px', textAlign: 'right' }}>
+      <img src="/Rectangle.png" alt="Logo" style={{ width: '60px', height: '60px',marginRight: '140px' }} />
+      <p style={{ ...gradientText, marginBottom:'0', fontSize: '25px', fontWeight: 'normal',marginLeft:'30px' , marginTop:'-50px' }}>MoodScope</p>
+    </div>
+      <div style={{ marginBottom: '10px', alignSelf:'center', marginRight:'200px', }}>
+        <p style={gradientText}>Emotion for the day...??</p>
       </div>
       <div style={gridContainerStyle}>
         {emotionsWithEmojis.map(({ emotion, emoji }) => (

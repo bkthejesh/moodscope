@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import LoadingPage from "./loading";
 
+
 const Loading = (): JSX.Element | null => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -32,11 +33,23 @@ const Loading = (): JSX.Element | null => {
       router.events.off("routeChangeError", handleComplete);
     };
   }, [router]);
-
+  
   return loading ? <LoadingPage /> : null;
+
 };
 
+
 const App = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Simulate a loading delay (5 seconds) before redirecting to the login page
+    const delay = setTimeout(() => {
+      router.push('/login');  // Adjust the route as needed
+    }, 3000);
+
+    return () => clearTimeout(delay);
+  }, [router]);
   return (
     <>
       <Loading />

@@ -1,31 +1,61 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
+dotenv.config();
+//import {supabase} from './sb';
+//import supabase from './error';
+
+const supabaseUrl:string= process.env.SURL! ||'';
+const supabaseKey:string = process.env.SKEY ||'';
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+
+//</error>
+
 const Login = () => {
+  const router = useRouter();
+
+  const handleLoginWithGoogle = async () => {
+    try {
+      const { error, data } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+      });
+
+      if (error) {
+        const castedError = error as { message?: string };
+        console.error('Google authentication error:', castedError.message);
+      } else {
+        console.log('Google authentication successful!', data);
+
+        // Redirect to the main page after successful authentication
+        router.push('/mainpage'); // Adjust the route as needed
+      }
+    } catch (error: any) {
+      console.error('Error during Google authentication:', error.message);
+    }
+  };
+
   return (
-    <div className="flex items-end justify-start h-screen">
-      <div className="relative w-full h-full overflow-hidden flex">
-        <div className="w-3/5 h-full bg-[#ff8473] rounded-r-full overflow-hidden relative flex flex-col items-start justify-end pr-2 pb-2"
-          style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%, 0 0)', }}
-        >
-          <div className="w-48 h-48 mb-2">
-            <Image src="/logo.png" alt="Logo" width={256} height={128} />
-          </div>
-          <p className="text-2xl mb-2 font-lucida-calligraphy text-left"> 
-            MoodScope
-          </p>
+    <div className="flex items-center justify-center h-screen bg-[#000000]">
+      <div className="text-white text-center flex items-center">
+        <div className="mr-20">
+          <Image src="/Rectangle.png" alt="Logo" width={256} height={128} />
         </div>
-        <div className="w-3/5 p-8 flex items-center justify-center bg-white">
-          <div className="text-[#ff8473]">
-            <h1 className="text-4xl mb-5 font-lucida-calligraphy text-black">
-              MoodScope
-            </h1>
-            <form>
-              <button type="submit" className="bg-[#608DFF] text-white py-2 px-10 rounded-full hover:bg-blue-600 flex items-center">
-                Login with 
-                <Image src="/icon _google_.svg" alt="Google icon" width={25} height={25} className="ml-2"/>
-              </button>
-            </form>
-          </div>
+        <div className="mb-30 text-left">
+          <p className="text-4xl font-lucida-calligraphy mb-40">MoodScope</p>
+          <form>
+            <button
+              type="button"
+              onClick={handleLoginWithGoogle}
+              className="bg-[#608DFF] text-white py-5 px-20 rounded-full hover:bg-blue-600 flex items-center text-2xl"
+            >
+              Login with
+              <Image src="/icon _google_.svg" alt="Google icon" width={25} height={25} className="ml-2" />
+            </button>
+          </form>
         </div>
       </div>
     </div>
